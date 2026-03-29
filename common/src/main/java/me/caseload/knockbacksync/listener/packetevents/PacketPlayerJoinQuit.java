@@ -20,6 +20,7 @@ public class PacketPlayerJoinQuit extends PacketListenerAbstract {
     public void onUserLogin(UserLoginEvent event) {
         Object nativePlayerObject = event.getPlayer();
         Preconditions.checkArgument(nativePlayerObject != null);
+        if (event.getUser() == null) return;
 
         @NotNull PlatformPlayer platformPlayer = Base.INSTANCE.getPlatformServer().getPlayer(nativePlayerObject);
         onPlayerJoin(event.getUser(), platformPlayer);

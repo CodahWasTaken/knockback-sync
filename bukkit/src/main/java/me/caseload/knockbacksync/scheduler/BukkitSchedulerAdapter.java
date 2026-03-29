@@ -43,9 +43,8 @@ public class BukkitSchedulerAdapter implements SchedulerAdapter {
         return new BukkitTaskHandle(scheduler.runTaskTimerAsynchronously(plugin, task, delay, period));
     }
 
-    // Bukkit should take care of this for us automatically
     @Override
     public void shutdown() {
-
+        scheduler.cancelTasks(plugin);
     }
 }
