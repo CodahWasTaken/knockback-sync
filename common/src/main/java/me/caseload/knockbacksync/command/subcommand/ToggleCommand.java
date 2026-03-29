@@ -54,9 +54,9 @@ public class ToggleCommand implements BuilderCommand {
                 .optional("target", Base.INSTANCE.getPlayerSelectorParser().descriptor())
                     .permission((sender -> {
                         Predicate<Sender> senderPredicate = (s) -> {
-                            return s.hasPermission(TOGGLE_GLOBAL_PERMISSION, false)
-                                    || sender.hasPermission(TOGGLE_SELF_PERMISSION, false)
-                                    || sender.hasPermission(TOGGLE_OTHER_PERMISSION, false);
+                            return s.hasPermission(TOGGLE_GLOBAL_PERMISSION, true)
+                                    || s.hasPermission(TOGGLE_SELF_PERMISSION, true)
+                                    || s.hasPermission(TOGGLE_OTHER_PERMISSION, true);
                         };
 
                         return PredicatePermission.of(senderPredicate).testPermission(sender);
@@ -66,7 +66,7 @@ public class ToggleCommand implements BuilderCommand {
                     PlayerSelector targetSelector = context.getOrDefault("target", null);
                     if (targetSelector == null) {
                         // Global toggle
-                        if (permissionChecker.hasPermission(sender, TOGGLE_GLOBAL_PERMISSION, false)) {
+                        if (permissionChecker.hasPermission(sender, TOGGLE_GLOBAL_PERMISSION, true)) {
                             toggleGlobalKnockback(sender);
                         } else {
                             sender.sendMessage(ChatUtil.translateAlternateColorCodes('&', noGlobalPermissionMessage));
@@ -74,7 +74,7 @@ public class ToggleCommand implements BuilderCommand {
                     } else {
                         PlatformPlayer target = targetSelector.getSinglePlayer();
                         boolean senderIsTarget = sender.getUniqueId() == target.getUUID();
-                        if (!senderIsTarget && !permissionChecker.hasPermission(sender, TOGGLE_OTHER_PERMISSION, false)) {
+                        if (!senderIsTarget && !permissionChecker.hasPermission(sender, TOGGLE_OTHER_PERMISSION, true)) {
                             sender.sendMessage(ChatUtil.translateAlternateColorCodes('&', noOtherPermissionMessage));
                             return;
                         } else if (senderIsTarget && !permissionChecker.hasPermission(sender, TOGGLE_SELF_PERMISSION, true)) {

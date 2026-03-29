@@ -24,7 +24,7 @@ public class ReloadCommand implements BuilderCommand {
                     .permission((sender -> {
                         final String permission = "knockbacksync.reload";
                         Predicate<Sender> senderPredicate = (s) -> {
-                            return s.hasPermission(permission, false);
+                            return s.hasPermission(permission, true);
                         };
 
                             return PredicatePermission.of(senderPredicate).testPermission(sender);

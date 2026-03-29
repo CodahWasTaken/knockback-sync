@@ -43,7 +43,7 @@ public class StatusCommand implements BuilderCommand {
                         .optional("target", Base.INSTANCE.getPlayerSelectorParser().descriptor())
                         .permission((sender -> {
                             Predicate<Sender> senderPredicate = (s) -> {
-                                return s.hasPermission(STATUS_SELF_PERMISSION, true) || sender.hasPermission(STATUS_OTHER_PERMISSION, false);
+                                return s.hasPermission(STATUS_SELF_PERMISSION, true) || s.hasPermission(STATUS_OTHER_PERMISSION, true);
                             };
 
                             return PredicatePermission.of(senderPredicate).testPermission(sender);
