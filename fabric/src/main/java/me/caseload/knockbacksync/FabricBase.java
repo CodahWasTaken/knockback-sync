@@ -13,8 +13,6 @@ import me.caseload.knockbacksync.permission.PermissionChecker;
 import me.caseload.knockbacksync.scheduler.FabricSchedulerAdapter;
 import me.caseload.knockbacksync.sender.FabricPlayerSelectorParser;
 import me.caseload.knockbacksync.sender.FabricSenderFactory;
-import me.caseload.knockbacksync.stats.custom.FabricStatsManager;
-import me.caseload.knockbacksync.stats.custom.PluginJarHashProvider;
 import me.caseload.knockbacksync.world.FabricServer;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.loader.api.FabricLoader;
@@ -46,9 +44,7 @@ public class FabricBase extends Base {
                 ExecutionCoordinator.simpleCoordinator(),
                 fabricSenderFactory
         );
-        super.statsManager = new FabricStatsManager();
         super.platformServer = new FabricServer();
-        super.pluginJarHashProvider = new PluginJarHashProvider(getJarURL());
     }
 
     @Override

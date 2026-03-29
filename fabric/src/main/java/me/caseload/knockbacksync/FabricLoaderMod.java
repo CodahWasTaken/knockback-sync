@@ -27,8 +27,6 @@ public class FabricLoaderMod implements PreLaunchEntrypoint, ModInitializer {
         core.enable();
         ServerLifecycleEvents.SERVER_STOPPING.register((server) -> {
             core.scheduler.shutdown();
-            // bstats removal
-//            core.statsManager.getMetrics().shutdown();
         });
     }
 

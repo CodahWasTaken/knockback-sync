@@ -15,8 +15,6 @@ import me.caseload.knockbacksync.scheduler.FoliaSchedulerAdapter;
 import me.caseload.knockbacksync.sender.BukkitPlayerSelectorParser;
 import me.caseload.knockbacksync.sender.BukkitSenderFactory;
 import me.caseload.knockbacksync.sender.Sender;
-import me.caseload.knockbacksync.stats.custom.BukkitStatsManager;
-import me.caseload.knockbacksync.stats.custom.PluginJarHashProvider;
 import me.caseload.knockbacksync.world.BukkitServer;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
@@ -60,9 +58,7 @@ public class BukkitBase extends Base {
         this.plugin = plugin;
         super.configManager = new ConfigManager();
         super.playerSelectorParser = new BukkitPlayerSelectorParser<>();
-        super.statsManager = new BukkitStatsManager(plugin);
         super.platformServer = new BukkitServer();
-        super.pluginJarHashProvider = new PluginJarHashProvider(this.getClass().getProtectionDomain().getCodeSource().getLocation());
         this.playerUpdateInterval = this.getConfigManager().getConfigWrapper().getInt("entity_tick_intervals.player", 2);
 
         MethodHandle handle = null;

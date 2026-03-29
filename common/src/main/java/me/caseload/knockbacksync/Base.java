@@ -18,9 +18,6 @@ import me.caseload.knockbacksync.manager.ConfigManager;
 import me.caseload.knockbacksync.permission.PermissionChecker;
 import me.caseload.knockbacksync.scheduler.SchedulerAdapter;
 import me.caseload.knockbacksync.sender.Sender;
-import me.caseload.knockbacksync.stats.custom.ClientBrandsPie;
-import me.caseload.knockbacksync.stats.custom.PluginJarHashProvider;
-import me.caseload.knockbacksync.stats.custom.StatsManager;
 import me.caseload.knockbacksync.world.PlatformServer;
 import org.incendo.cloud.CommandManager;
 import org.kohsuke.github.GitHub;
@@ -42,9 +39,7 @@ public abstract class Base {
     public static Base INSTANCE;
 
     @Getter private final Platform platform;
-    @Getter protected StatsManager statsManager;
     @Getter protected PlatformServer platformServer;
-    @Getter protected PluginJarHashProvider pluginJarHashProvider;
     @Getter protected SchedulerAdapter scheduler;
     @Getter protected ConfigManager configManager;
     @Getter protected CommandManager<Sender> commandManager;
@@ -98,7 +93,6 @@ public abstract class Base {
         registerCommands();
         initializeScheduler();
         configManager.loadConfig(false);
-        statsManager.init();
         checkForUpdates();
     }
 
@@ -117,8 +111,7 @@ public abstract class Base {
                 new AttributeChangeListener(),
                 new PingSendListener(),
                 new PingReceiveListener(),
-                new PacketPlayerJoinQuit(),
-                new ClientBrandListener()
+                new PacketPlayerJoinQuit()
         );
         Event.setEventBus(eventBus);
     }
