@@ -99,8 +99,17 @@ public class BukkitBase extends Base {
 
     @Override
     public void load() {
-        PacketEvents.setAPI(SpigotPacketEventsBuilder.build(this.plugin));
-        PacketEvents.getAPI().load();
+        // When PacketEvents is shaded this class is relocated into our own namespace, so the API is
+        // always null here and always ours to create. In the "lite" build it is the standalone
+        // packetevents plugin's class, and that plugin has already built and loaded the shared
+        // instance in its own onLoad (we declare it as a hard depend, so it always runs first).
+        // Calling setAPI again there would swap a second instance in underneath every other
+        // consumer, so only build one if nobody else has.
+        if (PacketEvents.getAPI() == null) {
+            ownsPacketEvents = true;
+            PacketEvents.setAPI(SpigotPacketEventsBuilder.build(this.plugin));
+            PacketEvents.getAPI().load();
+        }
     }
 
     @Override

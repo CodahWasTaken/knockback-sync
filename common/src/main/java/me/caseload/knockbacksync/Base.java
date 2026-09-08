@@ -48,6 +48,21 @@ public abstract class Base {
     @Getter
     protected AbstractPlayerSelectorParser<Sender> playerSelectorParser;
 
+    /**
+     * Whether this plugin created the PacketEvents API instance, and is therefore the one
+     * responsible for terminating it.
+     *
+     * <p>False in the "lite" build (built with {@code -PshadePE=false}), where PacketEvents is the
+     * standalone plugin shared with every other consumer on the server. Terminating a shared
+     * instance on our own disable would tear it down underneath GrimAC, InteractiveChat and
+     * anything else using it.
+     */
+    protected boolean ownsPacketEvents = false;
+
+    public boolean ownsPacketEvents() {
+        return ownsPacketEvents;
+    }
+
     protected Base() {
         this.platform = detectPlatform();
         INSTANCE = this;
