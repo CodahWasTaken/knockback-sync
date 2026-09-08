@@ -8,14 +8,14 @@ dependencies {
     // True compileOnly deps
     compileOnly("org.geysermc.floodgate:api:2.0-SNAPSHOT")
     compileOnly("io.netty:netty-all:4.1.72.Final")
-    compileOnly("org.projectlombok:lombok:1.18.34")
-    annotationProcessor("org.projectlombok:lombok:1.18.34")
+    compileOnly("org.projectlombok:lombok:1.18.46")
+    annotationProcessor("org.projectlombok:lombok:1.18.46")
 
     // Shaded in or bundled by platform-specific code
     if (shadePE) {
-        implementation("com.github.retrooper:packetevents-api:2.11.1+60a2c34-SNAPSHOT")
+        implementation("com.github.retrooper:packetevents-api:2.13.0")
     } else {
-        compileOnly("com.github.retrooper:packetevents-api:2.11.1+60a2c34-SNAPSHOT")
+        compileOnly("com.github.retrooper:packetevents-api:2.13.0")
     }
 
     implementation("org.yaml:snakeyaml:2.0")
@@ -25,7 +25,7 @@ dependencies {
     }
 
     implementation("org.incendo:cloud-core:2.0.0")
-    implementation("org.incendo:cloud-minecraft-extras:2.0.0-beta.10")
+    implementation("org.incendo:cloud-minecraft-extras:2.0.0-beta.17")
 }
 
 buildConfig {

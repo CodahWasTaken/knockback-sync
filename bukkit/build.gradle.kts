@@ -35,16 +35,16 @@ dependencies {
     compileOnly("org.geysermc.floodgate:api:2.0-SNAPSHOT")
     compileOnly("io.netty:netty-all:4.1.72.Final")
 
-    compileOnly("org.projectlombok:lombok:1.18.34")
-    annotationProcessor("org.projectlombok:lombok:1.18.34")
+    compileOnly("org.projectlombok:lombok:1.18.46")
+    annotationProcessor("org.projectlombok:lombok:1.18.46")
 
     shadeThisThing(implementation("org.kohsuke:github-api:1.326")!!)
     if (shadePE) {
-        shadeThisThing(implementation("com.github.retrooper:packetevents-spigot:2.11.2")!!)
+        shadeThisThing(implementation("com.github.retrooper:packetevents-spigot:2.13.0")!!)
     } else {
-        compileOnly("com.github.retrooper:packetevents-spigot:2.11.2")
+        compileOnly("com.github.retrooper:packetevents-spigot:2.13.0")
     }
-    shadeThisThing(implementation("org.incendo:cloud-paper:2.0.0-beta.14")!!)
+    shadeThisThing(implementation("org.incendo:cloud-paper:2.0.0-beta.17")!!)
     shadeThisThing(implementation("org.incendo:cloud-core:2.0.0")!!)
 
     // Required for 1.14.4 support because gson is too old to have JosnParser.parseString()

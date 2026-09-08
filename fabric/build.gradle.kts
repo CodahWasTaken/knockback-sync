@@ -53,9 +53,9 @@ dependencies {
     //    include(implementation("commons-io:commons-io:2.16.1")!!)
 
     compileOnly("org.geysermc.floodgate:api:2.0-SNAPSHOT")
-    compileOnly("org.projectlombok:lombok:1.18.34")
+    compileOnly("org.projectlombok:lombok:1.18.46")
     compileOnly("io.netty:netty-all:4.1.72.Final")
-    annotationProcessor("org.projectlombok:lombok:1.18.34")
+    annotationProcessor("org.projectlombok:lombok:1.18.46")
 }
 
 tasks.processResources {
